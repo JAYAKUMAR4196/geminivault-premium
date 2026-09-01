@@ -120,9 +120,9 @@ function Dashboard() {
                 Latest reflection
               </h2>
             </div>
-            <p className="mt-4 text-sm leading-relaxed text-foreground">{reflections[0].body}</p>
+            <p className="mt-4 text-sm leading-relaxed text-foreground">{reflections[0]!.body}</p>
             <div className="mt-5 flex items-center justify-between border-t border-border pt-4">
-              <Pill tone="signal">{Math.round(reflections[0].confidence * 100)}% confidence</Pill>
+              <Pill tone="signal">{Math.round(reflections[0]!.confidence * 100)}% confidence</Pill>
               <Link
                 to="/app/reflections"
                 className="text-xs font-medium text-primary hover:underline"

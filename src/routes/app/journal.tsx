@@ -26,7 +26,7 @@ export const Route = createFileRoute("/app/journal")({
 
 function Journal() {
   const [draft, setDraft] = useState("");
-  const [selected, setSelected] = useState(journalEntries[0].id);
+  const [selected, setSelected] = useState(journalEntries[0]!.id);
   const [thinking, setThinking] = useState(false);
   const [prompt, setPrompt] = useState("");
 
