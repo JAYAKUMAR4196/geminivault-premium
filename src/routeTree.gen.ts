@@ -14,6 +14,7 @@ import { Route as AppRouteRouteImport } from './routes/app/route'
 import { Route as AppIndexRouteImport } from './routes/app/index'
 import { Route as AppJournalRouteImport } from './routes/app/journal'
 import { Route as AppReflectionsRouteImport } from './routes/app/reflections'
+import { Route as AppSecurityRouteImport } from './routes/app/security'
 import { Route as AppTimelineRouteImport } from './routes/app/timeline'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +42,11 @@ const AppReflectionsRoute = AppReflectionsRouteImport.update({
   path: '/reflections',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppSecurityRoute = AppSecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppTimelineRoute = AppTimelineRouteImport.update({
   id: '/timeline',
   path: '/timeline',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteRouteWithChildren
   '/app/journal': typeof AppJournalRoute
   '/app/reflections': typeof AppReflectionsRoute
+  '/app/security': typeof AppSecurityRoute
   '/app/timeline': typeof AppTimelineRoute
   '/app/': typeof AppIndexRoute
 }
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app/journal': typeof AppJournalRoute
   '/app/reflections': typeof AppReflectionsRoute
+  '/app/security': typeof AppSecurityRoute
   '/app/timeline': typeof AppTimelineRoute
   '/app': typeof AppIndexRoute
 }
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/app': typeof AppRouteRouteWithChildren
   '/app/journal': typeof AppJournalRoute
   '/app/reflections': typeof AppReflectionsRoute
+  '/app/security': typeof AppSecurityRoute
   '/app/timeline': typeof AppTimelineRoute
   '/app/': typeof AppIndexRoute
 }
@@ -78,16 +87,24 @@ export interface FileRouteTypes {
     | '/app'
     | '/app/journal'
     | '/app/reflections'
+    | '/app/security'
     | '/app/timeline'
     | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app/journal' | '/app/reflections' | '/app/timeline' | '/app'
+  to:
+    | '/'
+    | '/app/journal'
+    | '/app/reflections'
+    | '/app/security'
+    | '/app/timeline'
+    | '/app'
   id:
     | '__root__'
     | '/'
     | '/app'
     | '/app/journal'
     | '/app/reflections'
+    | '/app/security'
     | '/app/timeline'
     | '/app/'
   fileRoutesById: FileRoutesById
@@ -134,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppReflectionsRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/app/security': {
+      id: '/app/security'
+      path: '/security'
+      fullPath: '/app/security'
+      preLoaderRoute: typeof AppSecurityRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/app/timeline': {
       id: '/app/timeline'
       path: '/timeline'
@@ -147,6 +171,7 @@ declare module '@tanstack/react-router' {
 interface AppRouteRouteChildren {
   AppJournalRoute: typeof AppJournalRoute
   AppReflectionsRoute: typeof AppReflectionsRoute
+  AppSecurityRoute: typeof AppSecurityRoute
   AppTimelineRoute: typeof AppTimelineRoute
   AppIndexRoute: typeof AppIndexRoute
 }
@@ -154,6 +179,7 @@ interface AppRouteRouteChildren {
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppJournalRoute: AppJournalRoute,
   AppReflectionsRoute: AppReflectionsRoute,
+  AppSecurityRoute: AppSecurityRoute,
   AppTimelineRoute: AppTimelineRoute,
   AppIndexRoute: AppIndexRoute,
 }
