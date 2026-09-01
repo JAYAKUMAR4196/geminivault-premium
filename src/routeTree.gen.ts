@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteRouteImport } from './routes/app/route'
 import { Route as AppIndexRouteImport } from './routes/app/index'
 import { Route as AppJournalRouteImport } from './routes/app/journal'
+import { Route as AppReflectionsRouteImport } from './routes/app/reflections'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,16 +35,23 @@ const AppJournalRoute = AppJournalRouteImport.update({
   path: '/journal',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppReflectionsRoute = AppReflectionsRouteImport.update({
+  id: '/reflections',
+  path: '/reflections',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
   '/app/journal': typeof AppJournalRoute
+  '/app/reflections': typeof AppReflectionsRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app/journal': typeof AppJournalRoute
+  '/app/reflections': typeof AppReflectionsRoute
   '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
@@ -51,14 +59,15 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
   '/app/journal': typeof AppJournalRoute
+  '/app/reflections': typeof AppReflectionsRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/app' | '/app/journal' | '/app/'
+  fullPaths: '/' | '/app' | '/app/journal' | '/app/reflections' | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app/journal' | '/app'
-  id: '__root__' | '/' | '/app' | '/app/journal' | '/app/'
+  to: '/' | '/app/journal' | '/app/reflections' | '/app'
+  id: '__root__' | '/' | '/app' | '/app/journal' | '/app/reflections' | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -96,16 +105,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppJournalRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/app/reflections': {
+      id: '/app/reflections'
+      path: '/reflections'
+      fullPath: '/app/reflections'
+      preLoaderRoute: typeof AppReflectionsRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
   }
 }
 
 interface AppRouteRouteChildren {
   AppJournalRoute: typeof AppJournalRoute
+  AppReflectionsRoute: typeof AppReflectionsRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppJournalRoute: AppJournalRoute,
+  AppReflectionsRoute: AppReflectionsRoute,
   AppIndexRoute: AppIndexRoute,
 }
 
