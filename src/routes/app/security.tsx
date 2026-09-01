@@ -28,7 +28,7 @@ export const Route = createFileRoute("/app/security")({
       },
     ],
   }),
-  component: SecurityCenter;
+  component: SecurityCenter,
 });
 
 const statusMeta = {
