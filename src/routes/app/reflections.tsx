@@ -20,7 +20,7 @@ export const Route = createFileRoute("/app/reflections")({
       },
     ],
   }),
-  component: Reflections;
+  component: Reflections,
 });
 
 const toneFor = {
